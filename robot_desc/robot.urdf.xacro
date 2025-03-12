@@ -362,7 +362,7 @@
 
     <gazebo>
         <plugin filename='libgazebo_ros2_control.so' name='gazebo_ros2_control'>
-            <parameters> $(find bumperbot_robot_desc)/config/ros2_control_param.yaml </parameters>
+            <parameters> $(find ddr)/config/ros2_control_param.yaml </parameters>
         </plugin>
     </gazebo>
 </robot>
