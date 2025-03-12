@@ -1,0 +1,238 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="large_factory">
+
+    <!-- Ground Plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Sun Light -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- ******************************************************************** -->
+    <!-- Factory Walls (Carefully Positioned to Form a Closed Room) -->
+    <!-- ******************************************************************** -->
+
+    <!-- Wall NORTH: Runs along the positive Y axis -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 10 2.5 0 0 0</pose> <!-- Centered at X=0, Y=10 (positive), Z=2.5 (half height) -->
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>20 0.2 5</size> <!-- Length=20, Thickness=0.2, Height=5 -->
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>20 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- Wall SOUTH: Runs along the negative Y axis -->
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -10 2.5 0 0 0</pose> <!-- Centered at X=0, Y=-10 (negative), Z=2.5 -->
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>20 0.2 5</size> <!-- Same dimensions as NORTH -->
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>20 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- Wall EAST: Runs along the positive X axis -->
+    <model name="wall_east">
+      <static>true</static>
+      <pose>10 0 2.5 0 0 1.57079632679</pose>  <!-- Centered at X=10 (positive), Y=0, Z=2.5, ROTATED 90 degrees -->
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>20 0.2 5</size>  <!-- Same dimensions -->
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>20 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- Wall WEST: Runs along the negative X axis -->
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-10 0 2.5 0 0 1.57079632679</pose>  <!-- Centered at X=-10 (negative), Y=0, Z=2.5, ROTATED 90 degrees -->
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>20 0.2 5</size>  <!-- Same dimensions -->
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>20 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- ******************************************************************** -->
+    <!-- Stockpiles of Cartons (Inside the Enclosed Area) -->
+    <!-- ******************************************************************** -->
+
+    <model name="stockpile_01">
+      <static>true</static>
+      <pose>-6 -1 0.5 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2 12 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2 12 2</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <model name="stockpile_02">
+      <static>true</static>
+      <pose>-0 -7 0.5 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>12 2 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>12 2 2</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <model name="stockpile_03">
+      <static>true</static>
+      <pose>7 1.5 0.5 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2 10 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2 10 2</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <model name="stockpile_04">
+      <static>true</static>
+      <pose>1.5 6 0.5 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10 2 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10 2 2</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!--  Add more models and features here -->
+
+  </world>
+</sdf>
