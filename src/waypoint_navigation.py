@@ -11,7 +11,7 @@ def main():
     navigator.waitUntilNav2Active()
 
     poses = [
-        # (x,y,theta in radian)
+        # (x,y,w,z)
         (8.8,-8.4,0.7,0.7),
         (8.7,8.2,0.0,-0.9),
         (-8.2,7.7,0.7,-0.7),
@@ -45,7 +45,7 @@ def main():
         elif result == TaskResult.CANCELED:
             print('Mission Canceled ..|..')
 
-    exit(0)
+    rclpy.shutdown()
 
 
 if __name__=='__main__':
