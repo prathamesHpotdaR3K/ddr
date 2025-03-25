@@ -8,10 +8,22 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(xacro REQUIRED)
+find_package(ament_cmake_python REQUIRED)
+find_package(rclpy REQUIRED)
 
 install(
-  DIRECTORY robot_desc launch rviz config world
+  DIRECTORY robot_desc launch rviz config world maps src
   DESTINATION share/${PROJECT_NAME}
+)
+
+ament_python_install_package(${PROJECT_NAME})
+
+install(PROGRAMS 
+  src/navigation_to_pose.py
+  src/waypoint_navigation.py
+  src/navigating_through_poses.py
+  src/camera_motion_controller.py
+  DESTINATION lib/${PROJECT_NAME}  
 )
 
 if(BUILD_TESTING)

@@ -239,7 +239,7 @@
     <link name="imu_link">
         <visual>
             <geometry>
-                <box size="0.005 0.005 0,005"/>
+                <box size="0.005 0.005 0.005"/>
             </geometry>
         </visual>
 
@@ -248,9 +248,11 @@
                 <box size="0.005 0.005 0.005"/>
             </geometry>
         </collision>
-        <xacro:inertial_box mass="0.01" x="0.005" y="0.005" z="0.005">
-            <origin xyz="${chassis_length/2} 0 ${chassis_height/2}" rpy="0 0 0"/>        
-        </xacro:inertial_box>
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
     </link>
 
 
@@ -360,9 +362,109 @@
         </sensor>
     </gazebo>
 
+    <!-- Camera Link -->
+
+    <joint name="camera_mount_joint" type="fixed">
+        <parent link="base_link"/> 
+        <child link="camera_mount"/>
+        <axis xyz="0 0 0" />
+        <origin xyz="0.134 0 ${chassis_height/2}" rpy="0 0 0"/>
+    </joint>
+
+    <link name="camera_mount">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <box size="0.05 0.025 0.025"/>
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <box size="0.05 0.025 0.025"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+    <joint name="camera_joint" type="continuous">
+        <parent link="camera_mount"/> 
+        <child link="camera_link"/>
+        <axis xyz="0 0 1" />
+        <origin xyz="0.015 0 0.0325" rpy="0 0 0"/>
+    </joint>
+
+    <link name="camera_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.02 0.05 0.05"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.02 0.05 0.05"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+    <gazebo reference="camera_link">
+        <sensor type="camera" name="camera1">
+            <update_rate>30.0</update_rate>
+            <camera name="head">
+                <horizontal_fov>1.15</horizontal_fov>
+                <image>
+                    <width>2304</width>
+                    <height>1296</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <cameraName>camera</cameraName>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>camera_link</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <!-- ros2_control plugin and parameter file -->
+
     <gazebo>
         <plugin filename='libgazebo_ros2_control.so' name='gazebo_ros2_control'>
             <parameters> $(find ddr)/config/ros2_control_param.yaml </parameters>
         </plugin>
     </gazebo>
+
 </robot>

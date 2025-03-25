@@ -10,7 +10,7 @@ def generate_launch_description():
     default_model_path = os.path.join(pkg_share, 'robot_desc', 'robot.urdf.xacro')
     default_rviz_config_path = os.path.join(pkg_share, 'rviz', 'config.rviz')
     world_path = os.path.join(pkg_share, 'world/world.sdf')
-    
+
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -52,6 +52,12 @@ def generate_launch_description():
         arguments=["diff_cont"],
     )
 
+    camera_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["camera_yaw_cont"],
+    )
+
     return LaunchDescription([
         DeclareLaunchArgument(name='model', default_value=default_model_path, description='Absolute path to robot model file'),
         DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path, description='Absolute path to rviz config file'),
@@ -62,5 +68,6 @@ def generate_launch_description():
         spawn_entity,
         wheel_controller_spawner,
         joint_state_broadcaster_spawner,
-        rviz_node, 
+        camera_controller_spawner,
+        rviz_node
     ])
