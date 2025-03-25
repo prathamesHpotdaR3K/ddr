@@ -22,7 +22,7 @@ This project aims to help you:
 ## 📂 Repository Structure
 
 Here's an overview of the directory structure:
-
+```
 ddr/
 ├── config/       # Configuration files for Nav2, robot parameters, and sensors
 ├── launch/       # Launch files for starting simulation, navigation, and localization
@@ -30,7 +30,7 @@ ddr/
 ├── robot_desc/   # URDF files describing the robot model for Gazebo
 ├── src/          # Python scripts for controlling the robot and camera
 └── README.md     # Project documentation
-
+```
 
 ## 🎮 Getting Started
 
