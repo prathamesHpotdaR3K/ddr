@@ -6,14 +6,14 @@ from launch_ros.substitutions import FindPackageShare
 import os
 
 def generate_launch_description():
-    pkg_share = FindPackageShare(package='bumperbot_robot_desc').find('bumperbot_robot_desc')
-    default_model_path = os.path.join(pkg_share, 'robot_description', 'bumperbot.urdf.xacro')
+    pkg_share = FindPackageShare(package='ddr').find('ddr')
+    default_model_path = os.path.join(pkg_share, 'robot_desc', 'robot.urdf.xacro')
     default_rviz_config_path = os.path.join(pkg_share, 'rviz', 'config.rviz')
     world_path = os.path.join(pkg_share, 'world/world.sdf')
-    
+
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
-        executable='robot_state_publisher',\
+        executable='robot_state_publisher',
         parameters=[{'robot_description': Command(['xacro ', LaunchConfiguration('model')]), 'use_sim_time':True}]
     )
 
@@ -36,7 +36,7 @@ def generate_launch_description():
     spawn_entity = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        arguments=['-entity', 'bumperbot', '-topic', 'robot_description'],
+        arguments=['-entity', 'ddr', '-topic', 'robot_description'],
         output='screen'
     )
 
@@ -52,15 +52,11 @@ def generate_launch_description():
         arguments=["diff_cont"],
     )
 
-
-
-    # robot_localization_node = Node(
-    #     package='robot_localization',
-    #     executable='ekf_node',
-    #     name='ekf_node',
-    #     output='screen',
-    #     parameters=[os.path.join(pkg_share, 'config/ekf.yaml'), {'use_sim_time':True}]
-    # )
+    camera_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["camera_yaw_cont"],
+    )
 
     return LaunchDescription([
         DeclareLaunchArgument(name='model', default_value=default_model_path, description='Absolute path to robot model file'),
@@ -72,6 +68,6 @@ def generate_launch_description():
         spawn_entity,
         wheel_controller_spawner,
         joint_state_broadcaster_spawner,
-        # robot_localization_node,
-        rviz_node, 
+        camera_controller_spawner,
+        rviz_node
     ])

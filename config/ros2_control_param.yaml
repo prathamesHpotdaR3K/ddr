@@ -6,6 +6,9 @@ controller_manager:
     diff_cont:
       type: diff_drive_controller/DiffDriveController
 
+    camera_yaw_cont:
+      type: position_controllers/JointGroupPositionController
+
     joint_broad:
       type: joint_state_broadcaster/JointStateBroadcaster
 
@@ -22,3 +25,7 @@ diff_cont:
     wheel_radius: 0.033
 
     use_stamped_vel: false
+
+camera_yaw_cont:
+  ros__parameters:
+    joints: ['camera_joint']
