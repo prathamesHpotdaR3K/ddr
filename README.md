@@ -17,7 +17,7 @@ This project aims to help you:
 - **Realistic Simulation**: A fully functional robot model in Gazebo Classic, complete with sensors and URDF descriptions.
 - **AMCL Localization**: Automatically localize your robot in a pre-existing map.
 - **Joystick-Controlled Camera**: Control the camera's yaw motion to observe surroundings while the robot navigates autonomously.
-- **Scripts**: Simple scripts built for navigating to pose and following waypoints
+- **Scripts**: Simple scripts built for navigating to pose ,following waypoints, implementing behavior tree, etc.
 
 ## 📂 Repository Structure
 
@@ -78,5 +78,5 @@ We welcome contributions! If you have suggestions, improvements, or bug fixes, p
 
 ## Special Thanks 
 
-Virtual Joytick : https://github.com/openrosbotix/virtual_joystick
-Reference for urdf: https://github.com/joshnewans/articubot_one
+# Virtual Joytick : https://github.com/openrosbotix/virtual_joystick
+# Reference for urdf: https://github.com/joshnewans/articubot_one
