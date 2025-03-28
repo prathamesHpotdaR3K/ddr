@@ -78,5 +78,5 @@ We welcome contributions! If you have suggestions, improvements, or bug fixes, p
 
 ## Special Thanks 
 
-# Virtual Joytick : https://github.com/openrosbotix/virtual_joystick
-# Reference for urdf: https://github.com/joshnewans/articubot_one
+- Virtual Joytick : https://github.com/openrosbotix/virtual_joystick
+- Reference for urdf: https://github.com/joshnewans/articubot_one
