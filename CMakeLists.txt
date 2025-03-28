@@ -23,6 +23,7 @@ install(PROGRAMS
   src/waypoint_navigation.py
   src/navigating_through_poses.py
   src/camera_motion_controller.py
+  src/waypoint_pytree.py
   DESTINATION lib/${PROJECT_NAME}  
 )
 
