@@ -24,6 +24,8 @@ install(PROGRAMS
   src/navigating_through_poses.py
   src/camera_motion_controller.py
   src/waypoint_pytree.py
+  src/trajectory_visualization.py
+  src/traj_viz_marker.py
   DESTINATION lib/${PROJECT_NAME}  
 )
 
