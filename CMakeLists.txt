@@ -29,6 +29,7 @@ install(PROGRAMS
   src/logger.py
   src/viz_server.py
   src/test_server.py
+  src/log_traj_viz.py
   DESTINATION lib/${PROJECT_NAME}  
 )
 
