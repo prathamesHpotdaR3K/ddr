@@ -4,7 +4,6 @@ import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
 from visualization_msgs.msg import MarkerArray, Marker
-from geometry_msgs.msg import PoseStamped
 
 class TrajVizMarker(Node):
     def __init__(self):
