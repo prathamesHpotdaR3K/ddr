@@ -26,6 +26,9 @@ install(PROGRAMS
   src/waypoint_pytree.py
   src/trajectory_visualization.py
   src/traj_viz_marker.py
+  src/logger.py
+  src/viz_server.py
+  src/test_server.py
   DESTINATION lib/${PROJECT_NAME}  
 )
 
